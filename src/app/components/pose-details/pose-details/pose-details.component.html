@@ -1,0 +1,31 @@
+<div class="container mt-5 mb-5 border border-2 rounded">
+    <div class="row">
+        <div class="col-md-6">
+            <img [src]="pose?.url_png" class="card-img-top img-fluid" alt="{{ pose?.english_name }}">
+        <!--display pose details of selected pose-->
+        <div class="col-md-6">
+            <h1>{{ pose?.english_name }}</h1>
+            <h2>{{ pose?.sanskrit_name }}</h2>
+            <p>{{ pose?.translation_name }}</p>
+            <hr>
+            <p><strong>Description:</strong> {{ pose?.pose_description }}</p>
+            <p><strong>Benefits:</strong> {{ pose?.pose_benefits }}</p>
+            
+            <!-- Dropdown for selecting a routine -->
+            <div class="mb-3">
+                <label for="routineSelect" class="form-label">Add to Routine:</label>
+                <!--binding-->
+                <select class="form-select" id="routineSelect" [(ngModel)]="selectedRoutineId">
+                    <option *ngFor="let routine of routines" [value]="routine._id">
+                      {{ routine.name }}
+                    </option>
+                  </select>
+                  <!--Add To Routine doesn't work error 404, but still fetches
+                  and populates routines in the dropdown-->
+                  <button class="btn btn-primary mt-2" (click)="selectedRoutineId && addToRoutine(selectedRoutineId)">
+                    Add to Routine
+                  </button>
+                </div>
+        </div>
+    </div>
+</div>

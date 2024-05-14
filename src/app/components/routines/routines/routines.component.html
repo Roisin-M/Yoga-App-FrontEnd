@@ -1,0 +1,27 @@
+<div class='container mt-3 mb-3'>
+  <h2>Add New Routine</h2>
+  <!--create a new routine with form and add to db-->
+  <form (submit)="addRoutine(name.value, description.value); $event.preventDefault();">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Routine Name" #name required>
+    </div>    
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea class="form-control" id="description" name="description" placeholder="Enter Routine Description" #description required></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add Routine</button>
+  </form>
+</div>
+<!--display list of existing routines-->
+<div class='container'>
+  <h2>Existing Routines</h2>
+  <ul class="list-group">
+    <li *ngFor="let routine of routines" class="list-group-item d-flex justify-content-between align-items-center">
+      {{ routine.name }} - {{ routine.description }}
+      <button (click)="deleteRoutine(routine._id)" class="btn btn-danger">Delete</button>
+      <button (click)="viewDetails(routine._id)" class="btn btn-secondary">View Details</button>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h2>Routine Details</h2>
+   <!--decision, display routine details if all fetched, else dislay loading-->
+  <div *ngIf="routine; else loading">
+    <h3>{{ routine.name }}</h3>
+    <p><strong>Description:</strong> {{ routine.description }}</p>
+
+    <div *ngIf="posesDetails.length > 0">
+      <h4>Poses</h4>
+      <div class="row">
+        <div class="col-sm-4" *ngFor="let pose of posesDetails">
+          <div class="card">
+            <img [src]="pose.url_png" class="card-img-top" alt="{{ pose.english_name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ pose.english_name }} ({{ pose.sanskrit_name }})</h5>
+              <p class="card-text">{{ pose.pose_description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--loading displays when the data is still being fetched-->
+  <ng-template #loading>
+    <p>Loading routine details...</p>
+  </ng-template>
+</div>

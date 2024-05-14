@@ -1,0 +1,11 @@
+.collapsed {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+}
+.card-body {
+  flex: 1;
+}

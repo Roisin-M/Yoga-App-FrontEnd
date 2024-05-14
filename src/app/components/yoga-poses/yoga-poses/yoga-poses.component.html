@@ -1,0 +1,31 @@
+
+  <div class="container mt-4">
+    <div class="btn-group mb-4">
+      <button class="btn btn-secondary" (click)="getAllPoses()">All Poses</button>
+      <button class="btn btn-secondary" (click)="getPosesByLevel('beginner')">Beginner</button>
+      <button class="btn btn-secondary" (click)="getPosesByLevel('intermediate')">Intermediate</button>
+      <button class="btn btn-secondary" (click)="getPosesByLevel('expert')">Expert</button>
+    </div>
+  
+    <div class="container mt-4">
+      <!--decision, display pose details if all fetched, else dislay loading-->
+      <div *ngIf="yogaPoses.length > 0; else loadingPoses">
+        <div class="row">
+          <div *ngFor="let pose of yogaPoses" class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+              <img [src]="pose.url_png" class="card-img-top" alt="{{ pose.english_name }}">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ pose.english_name }} ({{ pose.sanskrit_name }})</h5>
+                <button class="btn btn-primary mt-auto" (click)="showDetails(pose.id)">Show Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--loading displays when the data is still being fetched-->
+      <ng-template #loadingPoses>
+        <p>Loading poses...</p>
+      </ng-template>
+    </div>
+  </div>
+  
